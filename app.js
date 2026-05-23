@@ -224,6 +224,75 @@ const sortServices = (services) => {
 
 
 // ==============================
+// Validación de formulario (JOSE)
+// ==============================
+
+const requestForm = document.getElementById("requestForm");
+const formMessage = document.getElementById("formMessage");
+
+const validateForm = (event) => {
+  event.preventDefault(); 
+
+  const studentName = document.getElementById("studentName").value.trim();
+  const studentEmail = document.getElementById("studentEmail").value.trim();
+  const serviceSelectValue = document.getElementById("serviceSelect").value;
+  const requestReason = document.getElementById("requestReason").value.trim();
+
+  const nameError = document.getElementById("studentNameError");
+  const emailError = document.getElementById("studentEmailError");
+  const serviceError = document.getElementById("serviceSelectError");
+  const reasonError = document.getElementById("requestReasonError");
+
+  nameError.textContent = "";
+  emailError.textContent = "";
+  serviceError.textContent = "";
+  reasonError.textContent = "";
+  formMessage.className = "form-message";
+  formMessage.textContent = "";
+
+  let isValid = true;
+
+  if (studentName === "") {
+    nameError.textContent = "El nombre completo es obligatorio.";
+    isValid = false;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (studentEmail === "") {
+    emailError.textContent = "El correo es obligatorio.";
+    isValid = false;
+  } else if (!emailRegex.test(studentEmail)) {
+    emailError.textContent = "Ingrese un formato de correo válido.";
+    isValid = false;
+  } else if (!studentEmail.includes(".edu")) {
+    emailError.textContent = "Debe ser un correo institucional (ej. .edu.ec).";
+    isValid = false;
+  }
+
+  if (serviceSelectValue === "") {
+    serviceError.textContent = "Debe seleccionar un servicio del listado.";
+    isValid = false;
+  }
+
+  if (requestReason === "") {
+    reasonError.textContent = "El motivo de la solicitud es obligatorio.";
+    isValid = false;
+  } else if (requestReason.length < 10) {
+    reasonError.textContent = "El motivo es muy corto. Describa un poco más (min. 10 caracteres).";
+    isValid = false;
+  }
+
+  if (isValid) {
+    return true; 
+  } else {
+    formMessage.textContent = "Por favor, completa correctamente los campos resaltados.";
+    formMessage.classList.add("error");
+    return false;
+  }
+};
+
+
+// ==============================
 // Eventos del DOM
 // ==============================
 
@@ -232,6 +301,7 @@ searchInput.addEventListener("input", handleSearchServices);
 categoryFilter.addEventListener("change", filterServices);
 priorityFilter.addEventListener("change", filterServices);
 sortSelect.addEventListener("change", filterServices);
+requestForm.addEventListener("submit", validateForm);
 
 // ==============================
 // Inicialización del proyecto

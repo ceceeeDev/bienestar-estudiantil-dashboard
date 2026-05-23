@@ -285,6 +285,20 @@ Con este avance se incorporó el uso del método:
 
 ---
 
+### 10. Implementación de validaciones en el formulario (JOSE)
+
+Se implementó la lógica para validar los datos ingresados en el formulario de solicitud de atención antes de permitir su registro.
+
+Las validaciones aplicadas garantizan la integridad de los datos:
+- **Nombre del estudiante:** Se valida que el campo no esté vacío.
+- **Correo institucional:** Se exige un formato de correo válido mediante expresiones regulares y se verifica que contenga el dominio `.edu` propio de la institución.
+- **Servicio solicitado:** Es obligatorio seleccionar una de las opciones de la consulta
+- **Motivo de la solicitud:** Se exige un mínimo de 10 caracteres para tener siempre un buen contexto
+
+Se aplicó manipulación del DOM para inyectar mensajes de alerta específicos debajo de cada `input` y un contenedor general de error, dejando el formulario listo para que se avance con la creación del objeto y guardado en `localStorage`.
+
+---
+
 ## Lógica implementada en JavaScript
 
 Hasta este momento, el archivo `app.js` contiene la lógica principal del dashboard.
