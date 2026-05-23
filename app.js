@@ -8,6 +8,7 @@ const totalServices = document.getElementById("totalServices");
 const availableServices = document.getElementById("availableServices");
 const serviceSelect = document.getElementById("serviceSelect");
 const serviceDetail = document.getElementById("serviceDetail");
+const searchInput = document.getElementById("searchInput");
 
 // ==============================
 // Funciones auxiliares
@@ -148,10 +149,40 @@ const handleServiceDetail = (event) => {
 };
 
 // ==============================
+// Búsqueda de servicios
+// ==============================
+
+const searchServices = (searchText) => {
+  const normalizedSearchText = searchText.toLowerCase().trim();
+
+  const filteredServices = studentWellnessServices.filter((service) => {
+    const serviceName = service.name.toLowerCase();
+    const serviceCategory = service.category.toLowerCase();
+    const serviceDescription = service.description.toLowerCase();
+
+    return (
+      serviceName.includes(normalizedSearchText) ||
+      serviceCategory.includes(normalizedSearchText) ||
+      serviceDescription.includes(normalizedSearchText)
+    );
+  });
+
+  renderServices(filteredServices);
+  updateSummary(filteredServices);
+};
+
+const handleSearchServices = (event) => {
+  const searchText = event.target.value;
+
+  searchServices(searchText);
+};
+
+// ==============================
 // Eventos del DOM
 // ==============================
 
 servicesList.addEventListener("click", handleServiceDetail);
+searchInput.addEventListener("input", handleSearchServices);
 
 // ==============================
 // Inicialización del proyecto
