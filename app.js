@@ -11,7 +11,7 @@ const serviceDetail = document.getElementById("serviceDetail");
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
 const priorityFilter = document.getElementById("priorityFilter");
-
+const sortSelect = document.getElementById("sortSelect");
 
 // ==============================
 // Funciones auxiliares
@@ -186,8 +186,40 @@ const filterServices = () => {
     return matchesSearch && matchesCategory && matchesPriority;
   });
 
-  renderServices(filteredServices);
-  updateSummary(filteredServices);
+  const sortedServices = sortServices(filteredServices);
+
+  renderServices(sortedServices);
+  updateSummary(sortedServices);
+};
+
+// ==============================
+// Ordenamiento de servicios
+// ==============================
+
+const sortServices = (services) => {
+  const selectedSort = sortSelect.value;
+
+  const servicesCopy = [...services];
+
+  if (selectedSort === "name") {
+    servicesCopy.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  if (selectedSort === "priority") {
+    const priorityOrder = {
+      Alta: 1,
+      Media: 2,
+      Baja: 3,
+    };
+
+    servicesCopy.sort((a, b) => {
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
+    });
+  }
+
+  return servicesCopy;
 };
 
 
@@ -199,6 +231,7 @@ servicesList.addEventListener("click", handleServiceDetail);
 searchInput.addEventListener("input", handleSearchServices);
 categoryFilter.addEventListener("change", filterServices);
 priorityFilter.addEventListener("change", filterServices);
+sortSelect.addEventListener("change", filterServices);
 
 // ==============================
 // Inicialización del proyecto
