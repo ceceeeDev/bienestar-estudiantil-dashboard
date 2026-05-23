@@ -369,7 +369,7 @@ Pendientes principales:
 
 Como el proyecto es grupal, las funcionalidades restantes pueden dividirse entre los integrantes del equipo.
 
-### Integrante 1: Validaciones del formulario
+### Integrante Jose: Validaciones del formulario
 
 Debe encargarse de validar:
 
@@ -382,7 +382,7 @@ También debe mostrar errores visibles en los elementos correspondientes del for
 
 ---
 
-### Integrante 2: Registro de solicitudes
+### Integrante Arianna: Registro de solicitudes
 
 Debe encargarse de:
 
@@ -394,7 +394,7 @@ Debe encargarse de:
 
 ---
 
-### Integrante 3: LocalStorage y listado de solicitudes
+### Integrante Pablo: LocalStorage y listado de solicitudes
 
 Debe encargarse de:
 
@@ -405,7 +405,7 @@ Debe encargarse de:
 
 ---
 
-### Integrante 4: Documentación, pruebas y presentación
+### Integrante Jorge: Documentación, pruebas y presentación
 
 Debe encargarse de:
 
@@ -414,7 +414,6 @@ Debe encargarse de:
 - Agregar capturas de pantalla, si son necesarias.
 - Revisar que no existan errores en consola.
 - Probar el diseño responsive.
-- Preparar la explicación del proyecto para la exposición.
 
 ---
 
