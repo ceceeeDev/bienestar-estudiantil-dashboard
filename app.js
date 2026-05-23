@@ -9,6 +9,9 @@ const availableServices = document.getElementById("availableServices");
 const serviceSelect = document.getElementById("serviceSelect");
 const serviceDetail = document.getElementById("serviceDetail");
 const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+const priorityFilter = document.getElementById("priorityFilter");
+
 
 // ==============================
 // Funciones auxiliares
@@ -151,31 +154,42 @@ const handleServiceDetail = (event) => {
 // ==============================
 // Búsqueda de servicios
 // ==============================
+const handleSearchServices = () => {
+  filterServices();
+};
 
-const searchServices = (searchText) => {
-  const normalizedSearchText = searchText.toLowerCase().trim();
+// ==============================
+// Filtros de servicios
+// ==============================
+
+const filterServices = () => {
+  const searchText = searchInput.value.toLowerCase().trim();
+  const selectedCategory = categoryFilter.value;
+  const selectedPriority = priorityFilter.value;
 
   const filteredServices = studentWellnessServices.filter((service) => {
     const serviceName = service.name.toLowerCase();
     const serviceCategory = service.category.toLowerCase();
     const serviceDescription = service.description.toLowerCase();
 
-    return (
-      serviceName.includes(normalizedSearchText) ||
-      serviceCategory.includes(normalizedSearchText) ||
-      serviceDescription.includes(normalizedSearchText)
-    );
+    const matchesSearch =
+      serviceName.includes(searchText) ||
+      serviceCategory.includes(searchText) ||
+      serviceDescription.includes(searchText);
+
+    const matchesCategory =
+      selectedCategory === "all" || service.category === selectedCategory;
+
+    const matchesPriority =
+      selectedPriority === "all" || service.priority === selectedPriority;
+
+    return matchesSearch && matchesCategory && matchesPriority;
   });
 
   renderServices(filteredServices);
   updateSummary(filteredServices);
 };
 
-const handleSearchServices = (event) => {
-  const searchText = event.target.value;
-
-  searchServices(searchText);
-};
 
 // ==============================
 // Eventos del DOM
@@ -183,6 +197,8 @@ const handleSearchServices = (event) => {
 
 servicesList.addEventListener("click", handleServiceDetail);
 searchInput.addEventListener("input", handleSearchServices);
+categoryFilter.addEventListener("change", filterServices);
+priorityFilter.addEventListener("change", filterServices);
 
 // ==============================
 // Inicialización del proyecto
