@@ -7,6 +7,7 @@ const servicesList = document.getElementById("servicesList");
 const totalServices = document.getElementById("totalServices");
 const availableServices = document.getElementById("availableServices");
 const serviceSelect = document.getElementById("serviceSelect");
+const serviceDetail = document.getElementById("serviceDetail");
 
 // ==============================
 // Funciones auxiliares
@@ -89,6 +90,68 @@ const updateSummary = (services) => {
   totalServices.textContent = total;
   availableServices.textContent = available;
 };
+
+// ==============================
+// Detalle del servicio seleccionado
+// ==============================
+
+const renderServiceDetail = (service) => {
+  serviceDetail.innerHTML = `
+    <h3>${service.name}</h3>
+
+    <p>
+      <strong>Categoría:</strong> ${service.category}
+    </p>
+
+    <p>
+      <strong>Disponibilidad:</strong> ${service.availability}
+    </p>
+
+    <p>
+      <strong>Prioridad:</strong> ${service.priority}
+    </p>
+
+    <p>
+      <strong>Horario:</strong> ${service.schedule}
+    </p>
+
+    <p>
+      <strong>Ubicación:</strong> ${service.location}
+    </p>
+
+    <p>
+      <strong>Descripción:</strong> ${service.description}
+    </p>
+
+    <p>
+      <strong>Requisitos:</strong> ${service.requirements}
+    </p>
+  `;
+};
+
+const handleServiceDetail = (event) => {
+  if (!event.target.classList.contains("card-button")) {
+    return;
+  }
+
+  const serviceId = Number(event.target.dataset.id);
+
+  const selectedService = studentWellnessServices.find((service) => {
+    return service.id === serviceId;
+  });
+
+  if (!selectedService) {
+    return;
+  }
+
+  renderServiceDetail(selectedService);
+};
+
+// ==============================
+// Eventos del DOM
+// ==============================
+
+servicesList.addEventListener("click", handleServiceDetail);
 
 // ==============================
 // Inicialización del proyecto
