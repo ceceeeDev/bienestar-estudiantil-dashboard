@@ -266,8 +266,8 @@ const validateForm = (event) => {
   } else if (!emailRegex.test(studentEmail)) {
     emailError.textContent = "Ingrese un formato de correo válido.";
     isValid = false;
-  } else if (!studentEmail.includes(".edu")) {
-    emailError.textContent = "Debe ser un correo institucional (ej. .edu.ec).";
+  } else if (!studentEmail.includes(".edu.ec")) {
+    emailError.textContent = "Debe ser un correo institucional .edu.ec).";
     isValid = false;
   }
 
