@@ -397,3 +397,75 @@ const initApp = () => {
 };
 
 initApp();
+
+// ============================================================
+// Registro de solicitudes (ARIANNA)
+// ============================================================
+
+// Función para generar un ID único por solicitud
+// Combina el timestamp actual con un número aleatorio de 4 dígitos
+// Ejemplo de resultado: SOL-1716580123456-4827
+function generarIdUnico() {
+  const timestamp = Date.now();
+  const aleatorio = Math.floor(1000 + Math.random() * 9000);
+  return `SOL-${timestamp}-${aleatorio}`;
+}
+
+// Función para obtener la fecha y hora exacta del registro
+// Se formatea en español para Ecuador
+// Ejemplo de resultado: "24/05/2026, 10:35:22"
+function obtenerFechaRegistro() {
+  const ahora = new Date();
+  return ahora.toLocaleString("es-EC", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
+// Función para capturar los datos del formulario y crear el objeto solicitud
+// Lee cada campo del HTML y los agrupa en un solo objeto
+// También le asigna el ID único y la fecha de registro automáticamente
+function capturarDatosFormulario() {
+  const nombre = document.getElementById("studentName").value.trim();
+  const correo = document.getElementById("studentEmail").value.trim();
+  const servicio = document.getElementById("serviceSelect").value;
+  const motivo = document.getElementById("requestReason").value.trim();
+
+  return {
+    id: generarIdUnico(),
+    fechaRegistro: obtenerFechaRegistro(),
+    nombre,
+    correo,
+    servicio,
+    motivo,
+  };
+}
+
+// Función para limpiar el formulario después de registrar una solicitud
+// Usa reset() para devolver todos los campos a su estado inicial
+function limpiarFormulario() {
+  const formulario = document.getElementById("requestForm");
+  if (formulario) {
+    formulario.reset();
+  }
+}
+
+// Función principal para registrar la solicitud
+// Llama a la función de captura de datos, luego a la función de guardado (de Pablo) y finalmente limpia el formulario
+function registrarSolicitud() {
+  const solicitud = capturarDatosFormulario();
+
+  // Llamamos a la función de Pablo para guardar en localStorage
+  if (typeof guardarSolicitud === "function") {
+    guardarSolicitud(solicitud);
+  }
+
+  // Limpiamos el formulario tras el registro exitoso
+  limpiarFormulario();
+
+  return solicitud;
+}
