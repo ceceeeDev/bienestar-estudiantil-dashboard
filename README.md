@@ -320,6 +320,36 @@ Métodos y recursos utilizados en esta etapa:
 
 ---
 
+### 12. Registro de solicitudes de atención (ARIANNA)
+
+Se implementó la lógica para capturar los datos del formulario y construir el objeto de solicitud, una vez que las validaciones de José han sido superadas.
+
+Las funcionalidades agregadas en esta fase incluyen:
+
+- **Captura de datos del formulario:** Se leen los valores de los campos `studentName`, `studentEmail`, `serviceSelect` y `requestReason`.
+- **Creación del objeto solicitud:** Se construye un objeto con todos los datos del estudiante listos para ser almacenados.
+- **Identificador único:** Cada solicitud recibe un ID con el formato `SOL-<timestamp>-<4 dígitos aleatorios>`. Ejemplo: `SOL-1716580123456-4827`.
+- **Fecha de registro:** Se agrega automáticamente la fecha y hora exacta formateada en español (Ecuador).
+- **Limpieza del formulario:** Una vez registrada la solicitud, el formulario se resetea automáticamente para permitir un nuevo ingreso.
+
+Funciones principales agregadas:
+
+- `generarIdUnico()`
+- `obtenerFechaRegistro()`
+- `capturarDatosFormulario()`
+- `limpiarFormulario()`
+- `registrarSolicitud()`
+
+Métodos y recursos utilizados:
+
+- `Date.now()`
+- `Math.floor()` y `Math.random()`
+- `toLocaleString()`
+- `trim()`
+- `reset()`
+
+---
+
 ## Lógica implementada en JavaScript
 
 Hasta este momento, el archivo `app.js` contiene la lógica principal del dashboard.
