@@ -1,9 +1,9 @@
 # Bienestar Estudiantil - Dashboard Interactivo
 
-Este proyecto corresponde al módulo de **Bienestar Estudiantil** del Grupo 5.  
-Su objetivo es desarrollar un dashboard web interactivo que permita visualizar servicios de apoyo estudiantil y registrar solicitudes de atención mediante un formulario.
+Proyecto académico correspondiente al **Grupo 5**, desarrollado para el módulo de **Bienestar Estudiantil**.  
+La aplicación consiste en un dashboard web interactivo construido con **HTML, CSS y JavaScript ES6**, orientado a consultar servicios de apoyo estudiantil y registrar solicitudes de atención de manera simulada.
 
-El proyecto se está desarrollando con **HTML, CSS y JavaScript puro**, aplicando sintaxis moderna de **JavaScript ES6** y buenas prácticas básicas de organización de archivos.
+El proyecto se encuentra en su **fase final funcional**, cumpliendo con los requerimientos principales solicitados por el docente: interfaz web, listado dinámico, formulario con validaciones, detalle de registros, búsqueda, filtros, ordenamiento, persistencia local con `localStorage` y uso de métodos modernos de arreglos en JavaScript.
 
 ---
 
@@ -11,7 +11,7 @@ El proyecto se está desarrollando con **HTML, CSS y JavaScript puro**, aplicand
 
 **Grupo 5: Bienestar Estudiantil**
 
-El módulo está enfocado en presentar servicios relacionados con el acompañamiento, apoyo y atención a estudiantes dentro de una institución educativa.
+El módulo está enfocado en presentar servicios relacionados con el acompañamiento, apoyo y atención de estudiantes dentro de una institución educativa.
 
 Los servicios iniciales definidos son:
 
@@ -26,20 +26,43 @@ Los servicios iniciales definidos son:
 
 ---
 
-## Tecnologías utilizadas
+## Estado actual del proyecto
 
-- HTML5
-- CSS3
-- JavaScript ES6
-- Git
-- GitHub
-- LocalStorage, para una etapa posterior del proyecto
+El proyecto se encuentra en una **fase final según las indicaciones del docente**.
+
+Actualmente permite:
+
+- Visualizar dinámicamente los servicios de bienestar estudiantil.
+- Consultar el detalle completo de cada servicio.
+- Buscar servicios por texto.
+- Filtrar servicios por categoría.
+- Filtrar servicios por prioridad.
+- Ordenar servicios por nombre o prioridad.
+- Registrar solicitudes de atención mediante formulario.
+- Validar los datos ingresados antes de guardar.
+- Guardar solicitudes en `localStorage`.
+- Recuperar las solicitudes al recargar la página.
+- Mostrar las solicitudes registradas en tarjetas.
+- Actualizar el contador de solicitudes registradas.
+- Generar un ID único para cada solicitud nueva.
+- Mantener un diseño responsive para distintos tamaños de pantalla.
 
 ---
 
-## Estructura inicial del proyecto
+## Tecnologías utilizadas
 
-Actualmente el proyecto cuenta con la siguiente estructura base:
+- **HTML5** para la estructura de la interfaz.
+- **CSS3** para el diseño visual y responsive.
+- **JavaScript ES6** para la lógica interactiva.
+- **Git** para control de versiones.
+- **GitHub** para trabajo colaborativo.
+- **localStorage** para persistencia local de solicitudes.
+
+No se utilizaron frameworks front-end, cumpliendo con la indicación del docente de trabajar con tecnologías base.
+
+---
+
+## Estructura del proyecto
 
 ```txt
 bienestar-estudiantil-dashboard/
@@ -48,33 +71,28 @@ bienestar-estudiantil-dashboard/
 ├── styles.css
 ├── data.js
 ├── app.js
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
----
+### Descripción de archivos
 
-## Avances realizados hasta el momento
-
-### 1. Creación del repositorio y estructura inicial
-
-Se creó el repositorio en GitHub para permitir el trabajo colaborativo del grupo.  
-También se creó la estructura inicial del proyecto con los archivos principales:
-
-- `index.html`
-- `styles.css`
-- `data.js`
-- `app.js`
-- `README.md`
-
-Este fue el primer avance del proyecto, dejando preparada la base para comenzar el desarrollo de forma organizada.
+| Archivo | Descripción |
+|---|---|
+| `index.html` | Contiene la estructura principal del dashboard: encabezado, resumen, filtros, listado de servicios, detalle, formulario y listado de solicitudes. |
+| `styles.css` | Contiene el diseño visual del proyecto, estilos de tarjetas, formularios, badges, secciones, responsive y efectos visuales. |
+| `data.js` | Contiene el arreglo inicial `studentWellnessServices` con los 8 servicios del módulo. |
+| `app.js` | Contiene toda la lógica de renderizado, búsqueda, filtros, ordenamiento, validaciones, localStorage y eventos del DOM. |
+| `README.md` | Documento explicativo del proyecto, instrucciones de uso, funcionalidades y distribución de trabajo. |
+| `.gitignore` | Archivo de configuración para excluir archivos innecesarios del control de versiones. |
 
 ---
 
-### 2. Creación de los datos iniciales en `data.js`
+## Servicios iniciales del módulo
 
-Se agregó un arreglo llamado `studentWellnessServices`, que contiene los servicios iniciales del módulo de Bienestar Estudiantil.
+En el archivo `data.js` se definió un arreglo llamado `studentWellnessServices`, compuesto por objetos JavaScript. Cada objeto representa un servicio de bienestar estudiantil.
 
-Cada servicio fue representado como un objeto con la siguiente información:
+Cada servicio contiene los siguientes campos:
 
 - `id`
 - `name`
@@ -86,7 +104,7 @@ Cada servicio fue representado como un objeto con la siguiente información:
 - `description`
 - `requirements`
 
-Ejemplo de estructura de un servicio:
+Ejemplo:
 
 ```js
 {
@@ -97,168 +115,166 @@ Ejemplo de estructura de un servicio:
   priority: "Alta",
   schedule: "Lunes a viernes, 08:00 - 16:00",
   location: "Departamento de Bienestar Estudiantil",
-  description: "Servicio de acompañamiento psicológico para estudiantes que presenten estrés, ansiedad, problemas personales, familiares o académicos.",
-  requirements: "Presentar carnet estudiantil y solicitar una cita previa mediante el formulario de atención."
+  description:
+    "Servicio de acompañamiento psicológico para estudiantes que presenten estrés, ansiedad, problemas personales, familiares o académicos.",
+  requirements:
+    "Presentar carnet estudiantil y solicitar una cita previa mediante el formulario de atención.",
 }
 ```
 
-Con este avance se cumple una parte importante del requerimiento del proyecto: trabajar con **arreglos y objetos en JavaScript**.
+Esta estructura permite trabajar con arreglos y objetos, además de facilitar el renderizado dinámico desde JavaScript.
 
 ---
 
-### 3. Creación de la estructura base en `index.html`
+## Funcionalidades implementadas
 
-Se desarrolló la estructura principal del dashboard en el archivo `index.html`.
+### 1. Renderizado dinámico de servicios
 
-Actualmente el HTML incluye:
+Los servicios definidos en `data.js` se muestran automáticamente en pantalla mediante JavaScript.
 
-- Encabezado principal del proyecto.
-- Tarjetas de resumen.
-- Campo de búsqueda.
-- Filtros por categoría y prioridad.
-- Selector para ordenar servicios.
-- Sección para mostrar los servicios de bienestar.
-- Panel lateral para mostrar el detalle de cada servicio.
-- Formulario para registrar solicitudes de atención.
-- Sección para mostrar solicitudes registradas.
-- Conexión con los archivos `data.js` y `app.js`.
+Función principal:
 
-El archivo `index.html` quedó preparado para que JavaScript pueda manipular dinámicamente los elementos de la página.
+```js
+const renderServices = (services) => {
+  // Genera tarjetas HTML a partir del arreglo recibido
+};
+```
 
----
+Esta función utiliza:
 
-### 4. Agregado de estilos base en `styles.css`
-
-Se agregó el diseño visual inicial del dashboard utilizando CSS puro.
-
-Los estilos actuales incluyen:
-
-- Diseño general del sitio.
-- Encabezado principal.
-- Tarjetas de resumen.
-- Área de búsqueda y filtros.
-- Tarjetas para servicios.
-- Panel de detalle del servicio.
-- Formulario de solicitud.
-- Mensajes de validación.
-- Sección para solicitudes registradas.
-- Diseño responsive para pantallas medianas y pequeñas.
-
-Esto permite que el proyecto ya tenga una presentación visual organizada y adaptable a diferentes tamaños de pantalla.
+- `map()` para recorrer los servicios.
+- Template strings para construir el HTML.
+- `innerHTML` para insertar las tarjetas en el DOM.
 
 ---
 
-### 5. Renderizado dinámico de servicios en `app.js`
+### 2. Carga dinámica del selector de servicios
 
-Se conectó el archivo `app.js` con los datos definidos en `data.js`.
+El formulario de solicitud incluye un campo `select` que se llena automáticamente con los servicios disponibles.
 
-Actualmente, JavaScript permite:
+Función principal:
 
-- Mostrar dinámicamente los servicios en pantalla.
-- Cargar los servicios dentro del selector del formulario.
-- Actualizar el total de servicios.
-- Calcular cuántos servicios están disponibles.
-- Usar el método `map()` para generar las tarjetas de servicios.
-- Usar el método `filter()` para calcular los servicios disponibles.
-- Manipular elementos del DOM mediante `document.getElementById()`.
+```js
+const renderServiceOptions = (services) => {
+  // Carga las opciones del select usando los servicios disponibles
+};
+```
 
-Funciones principales agregadas:
-
-- `renderServices()`
-- `renderServiceOptions()`
-- `updateSummary()`
-- `initApp()`
+Esto evita escribir manualmente las opciones en el HTML y mantiene sincronizado el formulario con los datos del sistema.
 
 ---
 
-### 6. Visualización del detalle de cada servicio
+### 3. Tarjetas de resumen
 
-Se agregó la funcionalidad para mostrar el detalle de un servicio seleccionado.
+El dashboard muestra información general, como:
 
-Al hacer clic en el botón **Ver detalle**, el sistema muestra información completa del servicio en el panel lateral.
+- Total de servicios.
+- Servicios disponibles.
+- Solicitudes registradas.
+
+Función principal:
+
+```js
+const updateSummary = (services) => {
+  // Actualiza los contadores principales del dashboard
+};
+```
+
+Para calcular los servicios disponibles se utiliza `filter()`.
+
+---
+
+### 4. Detalle dinámico del servicio
+
+Cada tarjeta de servicio incluye un botón **Ver detalle**.  
+Al hacer clic, se muestra información ampliada del servicio seleccionado.
+
+Funciones principales:
+
+```js
+const renderServiceDetail = (service) => {
+  // Muestra la información completa del servicio
+};
+
+const handleServiceDetail = (event) => {
+  // Identifica qué servicio fue seleccionado
+};
+```
 
 Esta funcionalidad utiliza:
 
 - `addEventListener()`
-- Eventos del DOM
 - `dataset`
-- Conversión de datos con `Number()`
-- Método `find()` para localizar el servicio seleccionado
-
-Funciones principales agregadas:
-
-- `renderServiceDetail()`
-- `handleServiceDetail()`
-
-Con este avance, el usuario ya puede consultar cada servicio y revisar datos como:
-
-- Categoría
-- Disponibilidad
-- Prioridad
-- Horario
-- Ubicación
-- Descripción
-- Requisitos
+- `Number()`
+- `find()`
 
 ---
 
-### 7. Implementación de búsqueda de servicios
+### 5. Búsqueda de servicios
 
-Se agregó la lógica para buscar servicios por texto desde el campo de búsqueda del dashboard.
-
-La búsqueda permite encontrar servicios según:
+El usuario puede buscar servicios por texto.  
+La búsqueda se aplica sobre:
 
 - Nombre del servicio.
 - Categoría.
 - Descripción.
 
-Para esta funcionalidad se utilizaron recursos de JavaScript como:
-
-- `filter()`
-- `includes()`
-- `toLowerCase()`
-- `trim()`
-- Evento `input`
-
-Esta mejora permite que el usuario pueda escribir una palabra clave, por ejemplo `salud`, `psicología` o `becas`, y el sistema muestre únicamente los servicios relacionados.
-
----
-
-### 8. Implementación de filtros por categoría y prioridad
-
-Se agregó la lógica para filtrar servicios mediante los selectores disponibles en la interfaz.
-
-Actualmente se puede filtrar por:
-
-- Categoría del servicio.
-- Prioridad del servicio.
-
-Los filtros trabajan junto con la búsqueda, lo que permite combinar criterios.  
-Por ejemplo, el usuario puede buscar una palabra y al mismo tiempo seleccionar una categoría o una prioridad específica.
-
-Para esta funcionalidad se utilizaron:
-
-- `filter()`
-- Condiciones lógicas
-- Eventos `change`
-- Manipulación dinámica del DOM
-
----
-
-### 9. Implementación de ordenamiento de servicios
-
-Se agregó la lógica para ordenar los servicios desde el selector de ordenamiento.
-
-Actualmente el sistema permite ordenar por:
-
-- Orden original.
-- Nombre del servicio.
-- Prioridad del servicio.
-
-Para ordenar por nombre se utilizó:
+Función relacionada:
 
 ```js
-localeCompare()
+const handleSearchServices = () => {
+  filterServices();
+};
+```
+
+La búsqueda utiliza:
+
+- `toLowerCase()`
+- `trim()`
+- `includes()`
+- `filter()`
+
+---
+
+### 6. Filtros por categoría y prioridad
+
+El dashboard permite filtrar los servicios por:
+
+- Categoría.
+- Prioridad.
+
+Función principal:
+
+```js
+const filterServices = () => {
+  // Combina búsqueda, categoría, prioridad y ordenamiento
+};
+```
+
+Esta función integra la búsqueda con los filtros, permitiendo combinar varios criterios al mismo tiempo.
+
+---
+
+### 7. Ordenamiento de servicios
+
+El usuario puede ordenar los servicios por:
+
+- Orden original.
+- Nombre.
+- Prioridad.
+
+Función principal:
+
+```js
+const sortServices = (services) => {
+  // Ordena una copia del arreglo recibido
+};
+```
+
+Para ordenar por nombre se utiliza:
+
+```js
+a.name.localeCompare(b.name);
 ```
 
 Para ordenar por prioridad se definió un orden personalizado:
@@ -271,207 +287,450 @@ const priorityOrder = {
 };
 ```
 
-También se utilizó el operador spread:
+También se utiliza el spread operator para no modificar directamente el arreglo original:
 
 ```js
 const servicesCopy = [...services];
 ```
 
-Esto permite ordenar una copia del arreglo filtrado sin modificar directamente el arreglo original `studentWellnessServices`.
+---
 
-Con este avance se incorporó el uso del método:
+### 8. Validación del formulario
 
-- `sort()`
+Antes de registrar una solicitud, el sistema valida los campos ingresados por el usuario.
+
+Campos validados:
+
+- Nombre completo.
+- Correo institucional.
+- Servicio solicitado.
+- Motivo de la solicitud.
+
+Función principal:
+
+```js
+const validateForm = (event) => {
+  // Valida los campos y evita el envío si hay errores
+};
+```
+
+Validaciones aplicadas:
+
+- El nombre no puede estar vacío.
+- El correo debe tener formato válido.
+- El correo debe corresponder a un dominio institucional `.edu.ec`.
+- El usuario debe seleccionar un servicio.
+- El motivo debe tener al menos 10 caracteres.
+
+Los errores se muestran directamente debajo de cada campo usando elementos del DOM, evitando depender únicamente de alertas del navegador.
 
 ---
 
-### 10. Implementación de validaciones en el formulario (JOSE)
+### 9. Registro de solicitudes
 
-Se implementó la lógica para validar los datos ingresados en el formulario de solicitud de atención antes de permitir su registro.
+Cuando el formulario es válido, se llama a la función `saveRequest()` para crear y guardar una solicitud.
 
-Las validaciones aplicadas garantizan la integridad de los datos:
-- **Nombre del estudiante:** Se valida que el campo no esté vacío.
-- **Correo institucional:** Se exige un formato de correo válido mediante expresiones regulares y se verifica que contenga el dominio `.edu` propio de la institución.
-- **Servicio solicitado:** Es obligatorio seleccionar una de las opciones de la consulta
-- **Motivo de la solicitud:** Se exige un mínimo de 10 caracteres para tener siempre un buen contexto
+Función principal:
 
-Se aplicó manipulación del DOM para inyectar mensajes de alerta específicos debajo de cada `input` y un contenedor general de error, dejando el formulario listo para que se avance con la creación del objeto y guardado en `localStorage`.
+```js
+const saveRequest = (name, email, service, reason) => {
+  // Crea el objeto de solicitud y lo guarda en localStorage
+};
+```
+
+Cada solicitud contiene:
+
+- `id`
+- `name`
+- `email`
+- `service`
+- `reason`
+- `date`
+
+Ejemplo:
+
+```js
+{
+  id: "SOL-1779653992022-1158",
+  name: "César",
+  email: "cesar@utm.edu.ec",
+  service: "Apoyo académico",
+  reason: "Necesito orientación sobre una asignatura.",
+  date: "24/5/2026, 3:19:52 p. m."
+}
+```
 
 ---
 
-### 11. Implementación de LocalStorage y listado de solicitudes (PABLO / ARIANNA)
+### 10. Generación de ID único
 
-Se implementó la captura de datos, la creación del objeto de solicitud y la persistencia de datos utilizando `localStorage`.
+Se agregó una función para generar un identificador único por cada solicitud nueva.
 
-Las funcionalidades agregadas en esta fase incluyen:
+Función principal:
 
-- **Captura y estructuración de datos:** Se creó la función `saveRequest()` que recibe los datos validados del formulario y construye un objeto de solicitud, añadiendo automáticamente la fecha de registro actual.
-- **Guardado en LocalStorage:** El nuevo objeto se inserta en un arreglo que se guarda en el navegador bajo la clave `wellnessRequests`.
-- **Lectura y renderizado dinámico:** Se creó la función `renderRequests()` que recupera el arreglo del almacenamiento local y utiliza el método `map()` para inyectar dinámicamente las tarjetas de las solicitudes en el contenedor de la interfaz. Se aprovecharon las clases CSS existentes (`.request-card`) para mantener la coherencia visual del proyecto.
-- **Actualización del DOM:** Se enlazó el guardado exitoso con la limpieza automática del formulario (`reset()`) y se implementó la actualización en tiempo real del contador global de solicitudes registradas basándose en la longitud del arreglo.
-- **Manejo de estados vacíos:** Si el arreglo del `localStorage` está vacío, se muestra un mensaje indicando que aún no hay solicitudes.
+```js
+const generateRequestId = () => {
+  const timestamp = Date.now();
+  const randomNumber = Math.floor(1000 + Math.random() * 9000);
 
-Métodos y recursos utilizados en esta etapa:
-- `localStorage.setItem()` y `localStorage.getItem()`
-- `JSON.stringify()` y `JSON.parse()`
-- `new Date().toLocaleDateString()`
-- `push()`
-- `map()`
+  return `SOL-${timestamp}-${randomNumber}`;
+};
+```
+
+El ID se compone de:
+
+- Prefijo `SOL`.
+- Marca temporal en milisegundos.
+- Número aleatorio de 4 dígitos.
+
+Esto permite diferenciar cada solicitud registrada.
 
 ---
 
-## Lógica implementada en JavaScript
+### 11. Persistencia con localStorage
 
-Hasta este momento, el archivo `app.js` contiene la lógica principal del dashboard.
+Las solicitudes se guardan en el navegador utilizando `localStorage`.
 
-Las funcionalidades implementadas son:
+Funciones principales:
 
-- Selección de elementos del DOM.
-- Renderizado dinámico de servicios.
-- Carga dinámica del selector de servicios del formulario.
-- Actualización de tarjetas de resumen.
-- Visualización del detalle de cada servicio.
-- Búsqueda por texto.
-- Filtro por categoría.
-- Filtro por prioridad.
-- Ordenamiento por nombre.
-- Ordenamiento por prioridad.
-- Eventos del DOM.
+```js
+const getRequestsFromStorage = () => {
+  // Lee las solicitudes guardadas
+};
 
-Métodos y recursos utilizados:
+const saveRequest = (name, email, service, reason) => {
+  // Guarda una nueva solicitud
+};
+```
+
+Recursos utilizados:
+
+- `localStorage.getItem()`
+- `localStorage.setItem()`
+- `JSON.parse()`
+- `JSON.stringify()`
+
+La clave usada para guardar las solicitudes es:
+
+```js
+"wellnessRequests"
+```
+
+Esto permite que los datos permanezcan disponibles aunque se recargue la página.
+
+---
+
+### 12. Renderizado de solicitudes registradas
+
+Las solicitudes guardadas se muestran en pantalla en la sección correspondiente.
+
+Función principal:
+
+```js
+const renderRequests = () => {
+  // Muestra las solicitudes guardadas y actualiza el contador
+};
+```
+
+Esta función:
+
+- Lee los datos desde `localStorage`.
+- Actualiza el contador de solicitudes registradas.
+- Muestra un mensaje si no existen solicitudes.
+- Renderiza tarjetas dinámicas con `map()`.
+
+---
+
+## Explicación general del flujo del programa
+
+El flujo principal de la aplicación funciona de la siguiente manera:
+
+```txt
+1. Se cargan los servicios desde data.js.
+2. initApp() inicializa la aplicación.
+3. renderServices() muestra las tarjetas de servicios.
+4. renderServiceOptions() carga los servicios en el formulario.
+5. updateSummary() actualiza los contadores de servicios.
+6. renderRequests() carga las solicitudes guardadas desde localStorage.
+7. El usuario puede buscar, filtrar y ordenar servicios.
+8. El usuario puede ver el detalle de un servicio.
+9. El usuario completa el formulario de solicitud.
+10. validateForm() valida los campos.
+11. Si los datos son correctos, saveRequest() guarda la solicitud.
+12. renderRequests() actualiza el listado y el contador.
+```
+
+---
+
+## Métodos y recursos de JavaScript utilizados
+
+El proyecto utiliza los siguientes métodos y recursos:
 
 - `map()`
 - `filter()`
 - `find()`
 - `sort()`
+- `push()`
 - `includes()`
 - `toLowerCase()`
 - `trim()`
 - `localeCompare()`
 - `addEventListener()`
+- `getElementById()`
+- `innerHTML`
+- `textContent`
+- `classList.add()`
+- `classList.remove()`
 - `dataset`
+- `Number()`
+- `Date.now()`
+- `Math.random()`
+- `Math.floor()`
+- `new Date().toLocaleString()`
+- `localStorage.getItem()`
+- `localStorage.setItem()`
+- `JSON.parse()`
+- `JSON.stringify()`
 - Spread operator `[...]`
 - Template strings
 
 ---
 
-## Requisitos del enunciado que ya se están cumpliendo
+## Diseño visual y responsive
 
-Hasta este punto, el proyecto ya cumple con varios requisitos solicitados:
+El archivo `styles.css` contiene el diseño general del dashboard.
 
-- Uso de HTML, CSS y JavaScript.
-- Uso de JavaScript ES6.
-- Uso de arreglos.
-- Uso de objetos.
-- Arreglo inicial con 8 registros.
-- Manipulación del DOM.
-- Uso de `map()`.
-- Uso de `filter()`.
-- Uso de `find()`.
-- Uso de `sort()`.
-- Eventos del DOM con `addEventListener()`.
-- Búsqueda dinámica.
-- Filtros interactivos.
-- Ordenamiento de datos.
-- Estructura de archivos organizada.
-- Diseño visual inicial.
-- Proyecto versionado con Git y GitHub.
+Aspectos principales del diseño:
 
----
+- Uso de variables CSS en `:root`.
+- Paleta de colores institucional con tonos azul, teal y neutros.
+- Tipografías importadas desde Google Fonts.
+- Tarjetas con bordes redondeados y sombras suaves.
+- Badges para categorías, disponibilidad y prioridad.
+- Diseño de formulario con mensajes de error visibles.
+- Diseño responsive mediante media queries.
+- Adaptación de columnas en pantallas medianas y pequeñas.
 
-## Funcionalidades pendientes
+El responsive se trabaja principalmente en dos puntos de quiebre:
 
-Aunque ya existe una base funcional sólida, todavía faltan algunas partes importantes para completar el proyecto al 100%.
+```css
+@media (max-width: 950px) {
+  /* Ajustes para tablets y pantallas medianas */
+}
 
-Pendientes principales:
-
-1. Validar el formulario de solicitud.
-2. Mostrar mensajes de error debajo de cada campo.
-3. Registrar solicitudes de atención.
-4. Crear objetos de solicitud con los datos ingresados.
-5. Guardar solicitudes en `localStorage`.
-6. Recuperar solicitudes guardadas al recargar la página.
-7. Mostrar solicitudes guardadas en pantalla.
-8. Actualizar el contador de solicitudes registradas.
-9. Incorporar el uso de `some()` y `every()` en la lógica de validaciones.
-10. Agregar capturas de pantalla al README, si el docente lo solicita.
-11. Revisar errores en consola.
-12. Realizar pruebas finales del proyecto.
+@media (max-width: 600px) {
+  /* Ajustes para celulares */
+}
+```
 
 ---
 
-## Distribución sugerida del trabajo pendiente
+## Instrucciones de uso
 
-Como el proyecto es grupal, las funcionalidades restantes pueden dividirse entre los integrantes del equipo.
+### 1. Clonar el repositorio
 
-### Integrante Jose: Validaciones del formulario
+```bash
+git clone URL_DEL_REPOSITORIO
+```
 
-Debe encargarse de validar:
+### 2. Entrar a la carpeta del proyecto
 
-- Nombre del estudiante.
-- Correo institucional.
-- Servicio seleccionado.
-- Motivo de la solicitud.
+```bash
+cd bienestar-estudiantil-dashboard
+```
 
-También debe mostrar errores visibles en los elementos correspondientes del formulario.
+### 3. Abrir el proyecto
 
----
+Puedes abrir el archivo `index.html` directamente en el navegador o utilizar una extensión como **Live Server** en Visual Studio Code.
 
-### Integrante Arianna: Registro de solicitudes
+Con Live Server:
 
-Debe encargarse de:
-
-- Capturar los datos del formulario.
-- Crear un objeto de solicitud.
-- Agregar un identificador único.
-- Agregar fecha de registro.
-- Limpiar el formulario después de registrar.
+1. Abrir la carpeta del proyecto en Visual Studio Code.
+2. Clic derecho sobre `index.html`.
+3. Seleccionar **Open with Live Server**.
 
 ---
 
-### Integrante Pablo: LocalStorage y listado de solicitudes
+## Cómo usar la aplicación
 
-Debe encargarse de:
+### Consultar servicios
 
-- Guardar solicitudes en `localStorage`.
-- Leer solicitudes desde `localStorage`.
-- Mostrar solicitudes registradas en pantalla.
-- Actualizar el contador de solicitudes registradas.
+Al abrir el proyecto, se muestran las tarjetas de servicios de bienestar estudiantil.  
+Cada tarjeta contiene nombre, descripción, categoría, disponibilidad y prioridad.
+
+### Ver detalle de un servicio
+
+Para consultar información completa:
+
+1. Ubicar el servicio deseado.
+2. Presionar el botón **Ver detalle**.
+3. Revisar la información ampliada en el panel lateral.
+
+### Buscar servicios
+
+En el campo de búsqueda se puede escribir una palabra clave, por ejemplo:
+
+```txt
+salud
+psicología
+becas
+deporte
+```
+
+El sistema mostrará los servicios relacionados.
+
+### Filtrar servicios
+
+Se puede filtrar por:
+
+- Categoría.
+- Prioridad.
+
+Los filtros pueden combinarse con la búsqueda.
+
+### Ordenar servicios
+
+El selector de ordenamiento permite organizar los servicios por:
+
+- Orden original.
+- Nombre del servicio.
+- Prioridad.
+
+### Registrar una solicitud
+
+Para registrar una solicitud:
+
+1. Escribir el nombre completo del estudiante.
+2. Ingresar un correo institucional con dominio `.edu.ec`.
+3. Seleccionar un servicio.
+4. Escribir el motivo de la solicitud con al menos 10 caracteres.
+5. Presionar el botón de registro.
+
+Si los datos son correctos, la solicitud se guarda y aparece en la sección de solicitudes registradas.
+
+### Limpiar solicitudes de prueba
+
+Si se desea borrar las solicitudes guardadas localmente durante pruebas, se puede ejecutar en la consola del navegador:
+
+```js
+localStorage.removeItem("wellnessRequests");
+location.reload();
+```
 
 ---
 
-### Integrante Jorge: Documentación, pruebas y presentación
+## Distribución del trabajo
 
-Debe encargarse de:
+### César
 
-- Actualizar el README final.
-- Agregar instrucciones de uso.
-- Agregar capturas de pantalla, si son necesarias.
-- Revisar que no existan errores en consola.
-- Probar el diseño responsive.
+Responsable de la lógica principal del dashboard en JavaScript.
 
----
+Aportes principales:
 
-## Estado actual del proyecto
-
-El proyecto se encuentra en una fase funcional intermedia.
-
-Actualmente permite:
-
-- Mostrar servicios de bienestar estudiantil de forma dinámica.
-- Consultar el detalle de cada servicio.
-- Buscar servicios por texto.
-- Filtrar servicios por categoría.
-- Filtrar servicios por prioridad.
-- Ordenar servicios por nombre o prioridad.
-
-La siguiente etapa será completar el formulario de solicitudes y la persistencia de datos con `localStorage`.
+- Renderizado dinámico de servicios.
+- Carga dinámica del selector del formulario.
+- Contadores de servicios.
+- Detalle dinámico de servicios.
+- Búsqueda por texto.
+- Filtros por categoría y prioridad.
+- Ordenamiento por nombre y prioridad.
+- Integración general de eventos del DOM.
+- Organización de la lógica inicial en `app.js`.
+- Revisión de redundancias en el código.
+- Integración limpia del ID único en el flujo final de solicitudes.
 
 ---
 
-## Registro sugerido de commits realizados
+### José
 
-Los commits realizados hasta ahora pueden seguir una secuencia similar a esta:
+Responsable de la validación del formulario.
+
+Aportes principales:
+
+- Validación del nombre del estudiante.
+- Validación del formato del correo.
+- Validación del dominio institucional `.edu.ec`.
+- Validación del servicio seleccionado.
+- Validación del motivo de la solicitud.
+- Mensajes visibles de error debajo de cada campo.
+- Mensaje general de éxito o error.
+- Activación del flujo de guardado cuando el formulario es válido.
+
+---
+
+### Pablo
+
+Responsable de la persistencia y visualización de solicitudes.
+
+Aportes principales:
+
+- Creación de la lógica de `localStorage`.
+- Función para obtener solicitudes guardadas.
+- Función para guardar solicitudes.
+- Renderizado de solicitudes registradas.
+- Actualización del contador de solicitudes.
+- Manejo del estado vacío cuando no existen solicitudes.
+- Integración del renderizado inicial de solicitudes al cargar la aplicación.
+
+---
+
+### Arianna
+
+Aportó en la fase de registro de solicitudes y en la identificación de registros.
+
+Aportes principales:
+
+- Propuesta de generación de identificadores únicos para solicitudes.
+- Aporte conceptual para asociar cada solicitud con una fecha y un identificador.
+- Participación en la etapa de registro de solicitudes.
+- Elementos útiles de su propuesta fueron integrados de forma limpia al flujo final para evitar redundancias.
+
+---
+
+### Jorge
+
+Responsable del informe y documentación académica del proyecto.
+
+Aportes principales:
+
+- Elaboración del informe del proyecto.
+- Organización de la explicación académica.
+- Apoyo en la presentación y descripción del desarrollo.
+- Documentación del proceso de trabajo grupal.
+
+---
+
+## Requisitos del enunciado cumplidos
+
+| Requisito solicitado | Estado |
+|---|---|
+| Interfaz web funcional con HTML, CSS y JavaScript | Cumplido |
+| No usar frameworks front-end | Cumplido |
+| JavaScript ES6 o superior | Cumplido |
+| Arreglo inicial con al menos 8 registros | Cumplido |
+| Uso de objetos | Cumplido |
+| Uso de arreglos | Cumplido |
+| Uso de métodos de arreglos | Cumplido |
+| Uso de `map()` | Cumplido |
+| Uso de `filter()` | Cumplido |
+| Uso de `find()` | Cumplido |
+| Uso de `sort()` | Cumplido |
+| Eventos del DOM | Cumplido |
+| Listado dinámico de registros | Cumplido |
+| Formulario de creación o registro | Cumplido |
+| Validaciones visibles para el usuario | Cumplido |
+| Panel de detalle o tarjeta ampliada | Cumplido |
+| Búsqueda de información | Cumplido |
+| Filtros de información | Cumplido |
+| Clasificación u ordenamiento de información | Cumplido |
+| Persistencia con `localStorage` | Cumplido |
+| README con explicación del proyecto | Cumplido |
+
+---
+
+## Commits sugeridos del desarrollo
+
+Durante el desarrollo se trabajó de manera progresiva con commits relacionados con:
 
 ```txt
 Crear estructura inicial del proyecto
@@ -484,10 +743,22 @@ Implementar búsqueda de servicios
 Implementar filtros de servicios
 Implementar ordenamiento de servicios
 Actualizar documentación de avances del proyecto
-Implementar validaciones del formulario
-Implementar captura de datos y LocalStorage para solicitudes
-Mostrar listado dinámico de solicitudes registradas
+Agregar validaciones del formulario
+Implementar LocalStorage y renderizado de solicitudes
+Revertir lógica redundante de solicitudes
+Agregar ID único a solicitudes
+Actualizar README final del proyecto
 ```
+
+---
+
+## Observaciones finales
+
+El proyecto cumple con la finalidad académica planteada: construir un dashboard web interactivo para gestionar información del módulo de Bienestar Estudiantil.
+
+Se aplicaron conceptos importantes de JavaScript intermedio, como manipulación del DOM, eventos, funciones, arreglos de objetos, métodos modernos de arreglos, validaciones y persistencia local.
+
+Además, el trabajo fue organizado de manera colaborativa, distribuyendo responsabilidades entre los integrantes del grupo y utilizando GitHub como herramienta de control de versiones.
 
 ---
 
@@ -495,4 +766,13 @@ Mostrar listado dinámico de solicitudes registradas
 
 Proyecto académico desarrollado por el **Grupo 5**.
 
-Tema: **Bienestar Estudiantil**.
+**Tema:** Bienestar Estudiantil  
+**Módulo:** Dashboard web interactivo con JavaScript ES6
+
+**Integrantes:**
+
+- César
+- Pablo
+- José
+- Arianna
+- Jorge
