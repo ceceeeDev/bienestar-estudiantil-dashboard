@@ -12,6 +12,10 @@ const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
 const priorityFilter = document.getElementById("priorityFilter");
 const sortSelect = document.getElementById("sortSelect");
+const requestForm = document.getElementById("requestForm");
+const formMessage = document.getElementById("formMessage");
+const requestsList = document.getElementById("requestsList");
+const totalRequests = document.getElementById("totalRequests");
 
 // ==============================
 // Funciones auxiliares
@@ -197,16 +201,6 @@ const filterServices = () => {
 // ==============================
 
 const sortServices = (services) => {
-  // ==============================
-// Variables para solicitudes (Pablo Cedeño)
-// ==============================
-
-// Capturo el contenedor donde pintaremos las tarjetas y el texto del contador
-const requestsList = document.getElementById("requestsList");
-
-const totalRequests = document.getElementById("totalRequests");
-
-// ==============================
   const selectedSort = sortSelect.value;
 
   const servicesCopy = [...services];
@@ -237,8 +231,6 @@ const totalRequests = document.getElementById("totalRequests");
 // Validación de formulario (JOSE)
 // ==============================
 
-const requestForm = document.getElementById("requestForm");
-const formMessage = document.getElementById("formMessage");
 
 const validateForm = (event) => {
   event.preventDefault(); 
@@ -341,6 +333,7 @@ const renderRequests = () => {
     return `
       <article class="request-card">
         <h3>Solicitud #${index + 1} - ${req.service}</h3>
+        <p><strong>ID:</strong> ${req.id || "Sin ID"}</p>
         <p><strong>Estudiante:</strong> ${req.name} (${req.email})</p>
         <p><strong>Motivo:</strong> ${req.reason}</p>
         <div class="service-meta">
@@ -350,8 +343,18 @@ const renderRequests = () => {
     `;
   });
 
+
+
   // Lo inyectamos todo en el div correspondiente
   requestsList.innerHTML = requestCards.join("");
+};
+
+// Función para generar un ID único por cada solicitud
+const generateRequestId = () => {
+  const timestamp = Date.now();
+  const randomNumber = Math.floor(1000 + Math.random() * 9000);
+
+  return `SOL-${timestamp}-${randomNumber}`;
 };
 
 // Función para crear el objeto de la solicitud y guardarlo en el navegador
@@ -360,11 +363,12 @@ const saveRequest = (name, email, service, reason) => {
   
   // Armamos el objeto con la fecha de hoy
   const newRequest = {
-    name: name,
-    email: email,
-    service: service,
-    reason: reason,
-    date: new Date().toLocaleDateString()
+  id: generateRequestId(),
+  name: name,
+  email: email,
+  service: service,
+  reason: reason,
+  date: new Date().toLocaleString("es-EC"),
   };
 
   // Lo metemos al arreglo y lo guardamos convertido a texto
