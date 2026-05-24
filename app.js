@@ -197,6 +197,16 @@ const filterServices = () => {
 // ==============================
 
 const sortServices = (services) => {
+  // ==============================
+// Variables para solicitudes (Pablo Cedeño)
+// ==============================
+
+// Capturo el contenedor donde pintaremos las tarjetas y el texto del contador
+const requestsList = document.getElementById("requestsList");
+
+const totalRequests = document.getElementById("totalRequests");
+
+// ==============================
   const selectedSort = sortSelect.value;
 
   const servicesCopy = [...services];
@@ -283,6 +293,17 @@ const validateForm = (event) => {
   }
 
   if (isValid) {
+    // Si todo es válido, llamamos a la función de Pablo para guardar
+    saveRequest(studentName, studentEmail, serviceSelectValue, requestReason);
+    
+    // Mostramos mensaje de éxito
+    formMessage.textContent = "¡Solicitud registrada con éxito!";
+    formMessage.classList.remove("error");
+    formMessage.classList.add("success");
+    
+    // Limpiamos los campos del formulario para la siguiente solicitud
+    document.getElementById("requestForm").reset();
+    
     return true; 
   } else {
     formMessage.textContent = "Por favor, completa correctamente los campos resaltados.";
@@ -291,7 +312,68 @@ const validateForm = (event) => {
   }
 };
 
+// ==============================
+// Lógica de LocalStorage (PABLO)
+// ==============================
 
+// Función para traer las solicitudes guardadas
+// Si hay datos, los pasamos a JSON, si no, arrancamos con un arreglo vacío
+const getRequestsFromStorage = () => {
+  const requests = localStorage.getItem("wellnessRequests");
+  return requests ? JSON.parse(requests) : [];
+};
+
+// Función para pintar las tarjetas en el HTML y actualizar el número de arriba
+const renderRequests = () => {
+  const requests = getRequestsFromStorage();
+  
+  // Actualizamos el contador del dashboard
+  totalRequests.textContent = requests.length;
+
+  // Validamos si la lista está vacía para mostrar un mensajito
+  if (requests.length === 0) {
+    requestsList.innerHTML = `<p class="empty-message">No hay solicitudes registradas aún.</p>`;
+    return;
+  }
+
+  // Si hay datos, armamos el HTML usando la clase request-card que ya estaba en el CSS
+  const requestCards = requests.map((req, index) => {
+    return `
+      <article class="request-card">
+        <h3>Solicitud #${index + 1} - ${req.service}</h3>
+        <p><strong>Estudiante:</strong> ${req.name} (${req.email})</p>
+        <p><strong>Motivo:</strong> ${req.reason}</p>
+        <div class="service-meta">
+          <span class="badge">${req.date}</span>
+        </div>
+      </article>
+    `;
+  });
+
+  // Lo inyectamos todo en el div correspondiente
+  requestsList.innerHTML = requestCards.join("");
+};
+
+// Función para crear el objeto de la solicitud y guardarlo en el navegador
+const saveRequest = (name, email, service, reason) => {
+  const requests = getRequestsFromStorage();
+  
+  // Armamos el objeto con la fecha de hoy
+  const newRequest = {
+    name: name,
+    email: email,
+    service: service,
+    reason: reason,
+    date: new Date().toLocaleDateString()
+  };
+
+  // Lo metemos al arreglo y lo guardamos convertido a texto
+  requests.push(newRequest);
+  localStorage.setItem("wellnessRequests", JSON.stringify(requests));
+  
+  // Llamamos a la función de renderizar para que la nueva tarjeta aparezca de inmediato
+  renderRequests();
+};
 // ==============================
 // Eventos del DOM
 // ==============================
@@ -311,6 +393,7 @@ const initApp = () => {
   renderServices(studentWellnessServices);
   renderServiceOptions(studentWellnessServices);
   updateSummary(studentWellnessServices);
+  renderRequests(); // Llamamos a la función de PABLO para cargar las solicitudes guardadas
 };
 
 initApp();
