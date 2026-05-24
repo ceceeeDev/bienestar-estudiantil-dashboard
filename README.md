@@ -299,6 +299,27 @@ Se aplicó manipulación del DOM para inyectar mensajes de alerta específicos d
 
 ---
 
+### 11. Implementación de LocalStorage y listado de solicitudes (PABLO / ARIANNA)
+
+Se implementó la captura de datos, la creación del objeto de solicitud y la persistencia de datos utilizando `localStorage`.
+
+Las funcionalidades agregadas en esta fase incluyen:
+
+- **Captura y estructuración de datos:** Se creó la función `saveRequest()` que recibe los datos validados del formulario y construye un objeto de solicitud, añadiendo automáticamente la fecha de registro actual.
+- **Guardado en LocalStorage:** El nuevo objeto se inserta en un arreglo que se guarda en el navegador bajo la clave `wellnessRequests`.
+- **Lectura y renderizado dinámico:** Se creó la función `renderRequests()` que recupera el arreglo del almacenamiento local y utiliza el método `map()` para inyectar dinámicamente las tarjetas de las solicitudes en el contenedor de la interfaz. Se aprovecharon las clases CSS existentes (`.request-card`) para mantener la coherencia visual del proyecto.
+- **Actualización del DOM:** Se enlazó el guardado exitoso con la limpieza automática del formulario (`reset()`) y se implementó la actualización en tiempo real del contador global de solicitudes registradas basándose en la longitud del arreglo.
+- **Manejo de estados vacíos:** Si el arreglo del `localStorage` está vacío, se muestra un mensaje indicando que aún no hay solicitudes.
+
+Métodos y recursos utilizados en esta etapa:
+- `localStorage.setItem()` y `localStorage.getItem()`
+- `JSON.stringify()` y `JSON.parse()`
+- `new Date().toLocaleDateString()`
+- `push()`
+- `map()`
+
+---
+
 ## Lógica implementada en JavaScript
 
 Hasta este momento, el archivo `app.js` contiene la lógica principal del dashboard.
@@ -463,6 +484,9 @@ Implementar búsqueda de servicios
 Implementar filtros de servicios
 Implementar ordenamiento de servicios
 Actualizar documentación de avances del proyecto
+Implementar validaciones del formulario
+Implementar captura de datos y LocalStorage para solicitudes
+Mostrar listado dinámico de solicitudes registradas
 ```
 
 ---
