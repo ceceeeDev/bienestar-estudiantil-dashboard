@@ -378,6 +378,7 @@ const saveRequest = (name, email, service, reason) => {
   // Llamamos a la función de renderizar para que la nueva tarjeta aparezca de inmediato
   renderRequests();
 };
+
 // ==============================
 // Eventos del DOM
 // ==============================

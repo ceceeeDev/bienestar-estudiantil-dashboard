@@ -619,6 +619,66 @@ location.reload();
 
 ---
 
+---
+
+## Capturas de ejecución
+
+### Dashboard principal
+
+Vista general del sistema con los servicios de bienestar estudiantil cargados dinámicamente.
+
+![Dashboard principal](capturas/dashboard-principal.png)
+
+---
+
+### Búsqueda dinámica de servicios
+
+Ejemplo de búsqueda en tiempo real utilizando filtros sobre el arreglo de servicios.
+
+![Búsqueda dinámica](capturas/busqueda-servicios.png)
+
+---
+
+### Filtro por categoría y prioridad
+
+Filtrado dinámico de servicios según criterios seleccionados por el usuario.
+
+![Filtros](capturas/filtros-servicios.png)
+
+---
+
+### Detalle del servicio
+
+Visualización detallada de la información completa del servicio seleccionado.
+
+![Detalle del servicio](capturas/detalle-servicio.png)
+
+---
+
+### Validaciones del formulario
+
+Mensajes de validación mostrados cuando existen errores en los campos del formulario.
+
+![Validaciones](capturas/validaciones-formulario.png)
+
+---
+
+### Registro exitoso de solicitudes
+
+Registro dinámico de solicitudes de atención estudiantil.
+
+![Registro exitoso](capturas/registro-solicitud.png)
+
+---
+
+### Persistencia con localStorage
+
+Persistencia de solicitudes almacenadas en el navegador mediante localStorage.
+
+![LocalStorage](capturas/localstorage.png)
+
+---
+
 ## Distribución del trabajo
 
 ### César
