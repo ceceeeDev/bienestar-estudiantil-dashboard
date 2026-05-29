@@ -7,7 +7,6 @@ import { services } from "./data/seed.js";
 
 // Servicios
 import {
-  countAvailableServices,
   getServiceById,
   filterServices,
   sortServices
@@ -25,73 +24,52 @@ import { createRequest } from "./models/request.js";
 // Validadores (José)
 import { validateRequestForm } from "./utils/validators.js";
 
-// Renderizado (Pablo)
+// Renderizado (PABLO - Corregido para que coincida con ui/render.js)
 import {
-  renderServiceCards,
+  renderServices,
   renderServiceOptions,
-  renderDashboardSummary,
-  renderRequests
+  renderSummary,
+  renderRequests,
+  renderServiceDetail,
+  renderFormErrors,
+  renderFormMessage
 } from "./ui/render.js";
-
 
 // =========================
 // SELECTORES DEL DOM
 // =========================
 
 const searchInput = document.querySelector("#searchInput");
-
-const categoryFilter =
-  document.querySelector("#categoryFilter");
-
-const priorityFilter =
-  document.querySelector("#priorityFilter");
-
-const sortSelect =
-  document.querySelector("#sortSelect");
-
-const servicesContainer =
-  document.querySelector("#servicesContainer");
-
-const requestForm =
-  document.querySelector("#requestForm");
-
-const serviceSelect =
-  document.querySelector("#serviceSelect");
-
-const dashboardContainer =
-  document.querySelector("#dashboardContainer");
-
-const requestsContainer =
-  document.querySelector("#requestsContainer");
-
+const categoryFilter = document.querySelector("#categoryFilter");
+const priorityFilter = document.querySelector("#priorityFilter");
+const sortSelect = document.querySelector("#sortSelect");
+const servicesContainer = document.querySelector("#servicesContainer");
+const requestForm = document.querySelector("#requestForm");
+const serviceSelect = document.querySelector("#serviceSelect");
+const dashboardContainer = document.querySelector("#dashboardContainer");
+const requestsContainer = document.querySelector("#requestsContainer");
 
 // =========================
 // ESTADO INICIAL
 // =========================
 
 let currentServices = [...services];
-
 let requests = getRequests();
-
 
 // =========================
 // INICIALIZAR APP
 // =========================
 
 function initializeApp() {
-
-  renderServiceCards(currentServices);
-
+  // Llamamos a las funciones exactas que exportaste desde render.js
+  renderServices(currentServices);
   renderServiceOptions(services);
-
-  renderDashboardSummary(
-    countAvailableServices(services),
-    requests.length
-  );
-
+  renderSummary(services); // Solo pasamos la lista "services"
   renderRequests(requests);
 }
 
+// ¡Llamamos a la función para que arranque todo mágicamente!
+initializeApp();
 
 // Exportar función
 export { initializeApp };
